@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "X 熱度閱讀器",
+  "version": "0.1.0",
+  "description": "本機讀取 X 推薦動態、擷取正文及媒體連結，依時間校正互動數排名。不使用 LLM。",
+  "permissions": ["scripting", "storage"],
+  "host_permissions": ["https://x.com/*", "https://pbs.twimg.com/*"],
+  "action": { "default_title": "開啟 X 熱度閱讀器" },
+  "background": { "service_worker": "background.js" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'" }
+}

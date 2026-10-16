@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.zip
+exports/
+results/
+x-reader-results*.json
+x-reader-report*.html
+.DS_Store
+Thumbs.db

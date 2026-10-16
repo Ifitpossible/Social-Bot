@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>X 熱度閱讀器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><span class="badge">本機執行 · 無 LLM</span><h1>X 熱度閱讀器</h1>
+      <p>收集推薦貼文、保存可讀正文，再按時間校正互動數排名。</p></header>
+    <section class="panel">
+      <div class="settings">
+        <label>收集篇數<input id="limit" type="number" min="5" max="100" value="20"></label>
+        <label>保留前幾名<input id="top" type="number" min="1" max="100" value="5"></label>
+        <label>單篇讀取間隔（秒）<input id="interval" type="number" min="3" max="120" value="5"></label>
+        <label>時間平滑（小時）<input id="smoothing" type="number" min="0.1" max="24" step="0.1" value="2"></label>
+      </div>
+      <label class="check"><input id="images" type="checkbox" checked>把附圖存入本次匯出的閱讀報告（每張最多 8 MB，總計最多 32 MB）</label>
+      <p class="hint">請先在這個瀏覽器登入 X。開始後會開一個專用 X 分頁，由程式自動讀取；請保持本頁開啟，也不要操作專用分頁。遇到登入、驗證或頻率限制時會停止並保留部分結果。</p>
+      <div class="actions"><button id="start">開始收集</button><button id="stop" disabled class="secondary">停止並保留結果</button>
+        <button id="json" disabled class="secondary">匯出完整 JSON</button><button id="report" disabled class="secondary">匯出閱讀報告</button></div>
+      <p id="status" role="status">尚未開始。每項數字 ÷（發布後小時數＋平滑小時），四項排名各占 25%。</p>
+    </section>
+    <section class="panel"><h2>排名</h2><p id="summary" class="hint">只對本次收集的候選評分。未知數字不當作零；缺少四項數字或日期者不參與排名。</p>
+      <div class="table-wrap"><table><thead><tr><th>名次</th><th>作者／貼文</th><th>時齡</th><th>討論</th><th>轉發</th><th>愛心</th><th>觀看</th><th>分數</th><th>正文狀態</th></tr></thead><tbody id="rows"></tbody></table></div>
+    </section>
+    <section class="panel"><h2>執行紀錄</h2><pre id="log"></pre></section>
+    <footer>全部資料只存在本機。附圖可存入報告；影片保存可見的連結，不下載串流、不作 OCR。不擷取外站文章或全部留言。沒有傳送資料到 AI 或其他分析服務。</footer>
+  </main>
+  <script type="module" src="dashboard.js"></script>
+</body></html>
